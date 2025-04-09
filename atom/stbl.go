@@ -10,6 +10,8 @@ type StblBox struct {
 	Stts *SttsBox
 	Stsd *StsdBox
 	Stss *StssBox
+	Ctts *CttsBox
+	Stsc *StscBox
 }
 
 func (b *StblBox) parse() error {
@@ -28,6 +30,12 @@ func (b *StblBox) parse() error {
 		case "stss":
 			b.Stss = &StssBox{Box: box}
 			b.Stss.parse()
+		case "ctts":
+			b.Ctts = &CttsBox{Box: box}
+			b.Ctts.parse()
+		case "stsc":
+			b.Stsc = &StscBox{Box: box}
+			b.Stsc.parse()
 		}
 	}
 	return nil
